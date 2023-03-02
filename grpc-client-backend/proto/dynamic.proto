@@ -1,0 +1,73 @@
+syntax="proto3";
+
+package dynamic;
+
+option go_package = "github.com/Grow-Simplee-KGP/Thoth/proto/dynamic";    
+
+// lat and long are scaled by 1e6
+message Location {
+    int64 latitude = 1;
+    int64 longitude = 2;
+}
+
+
+message Object {
+    int32 id = 1;
+    int32 length = 2;
+    int32 breadth = 3;
+    int32 height = 4;
+    int32 x = 5;
+    int32 y = 6;
+    int32 z = 7;
+    bool is_delivery = 8;
+    Location location = 9;
+    int32 weight = 10;
+    int32 edd = 11;
+    int32 threat_metric = 12;
+}
+
+
+message ObjectPaths{
+    int32 vehicle=1;
+    repeated Object objects=2;
+    int32 volume = 3;
+    int32 weight = 4;
+    Location start = 5;
+    int32 current_time = 6;
+}
+
+message DynamicRequest{
+    Object pickup = 1;
+    repeated int32 object_ids = 2;
+    repeated ObjectPaths paths=3;
+    Location hub = 4;
+}
+
+message DynamicResponse{
+    int32 vehicle = 1;
+    repeated int32 object_ids=2;
+}
+
+message DeleteRequest{
+    int32 del_id = 1;
+    ObjectPaths path = 2;
+    Location hub = 3;
+}
+
+message DeleteResponse{
+    repeated int32 object_ids=2;
+}
+
+message SimulateRequest{
+    ObjectPaths path = 1;
+}
+
+message SimulateResponse{
+    ObjectPaths path = 1;
+}
+
+service DynamicRouting{
+    rpc RunDynamic(DynamicRequest) returns (DynamicResponse){}
+    rpc DeleteDynamic(DeleteRequest) returns (DeleteResponse){}
+    rpc Simulate(SimulateRequest) returns (SimulateResponse){}
+}

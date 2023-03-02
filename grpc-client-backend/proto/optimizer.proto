@@ -1,0 +1,65 @@
+syntax="proto3";
+
+package optimizer;
+
+service optimizer{
+    rpc StartService(OptimizerRequest) returns (OptimizerResponse){}
+}
+
+
+// /////////////////             RESPONSE   ////////////////////////////             //
+message OptimizerResponse{
+    repeated Cluster clusters=1;
+}
+
+message Cluster{
+    repeated ResponsePackage packages=1;
+}
+
+message ResponsePackage{
+    int32 id=1;
+    Position position=2;
+}
+
+message Position{
+    float x=1;
+    float y=2;
+    float z=3;
+    float length=4; // length and breadth should be the base lengths
+    float breadth=5;
+    float height=6;
+}
+
+
+//  /////////////////////        REQUEST   /////////////////////////////////////////      // 
+
+
+message OptimizerRequest{
+    repeated Package packages=1;
+    Bin bin=2;
+    Coordinate warehouse=3;
+    int32 riders=4;
+}
+
+message Coordinate{
+    int64 longitude=1;
+    int64 latitude=2;
+}
+
+message Package{
+    int32 id=1;
+    Dimension size=2;
+    Coordinate coordinates=3;
+    float weight=4;
+}
+
+message Bin{
+    Dimension size=1;
+    float capacity=2;
+}
+
+message Dimension{
+    float length=1;
+    float width=2;
+    float height=3;
+}

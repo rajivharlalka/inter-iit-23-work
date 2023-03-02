@@ -1,0 +1,16 @@
+syntax="proto3";  // This is the version of the protocol buffer language that we are using.
+
+package threat; // This is the package that the service is in.
+
+service Threat{ // This is the name of the service.
+    rpc getThreatScore(threatRequest) returns (threatResponse){} // This is the name of the rpc call and the request and response types.
+}
+
+message threatRequest{ // This is the request type. 
+    int64 longitude=1; // This is the longitude of the location. 
+    int64 latitude=2;   // This is the latitude of the location.
+}
+
+message threatResponse{ // This is the response type.
+    float threat=1; // This is the threat level of the location.
+}

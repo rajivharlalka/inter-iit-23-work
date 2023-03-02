@@ -1,0 +1,9 @@
+.git
+.dockerignore
+node_modules
+**/yarn-debug.log
+.editorconfig
+.prettierrc
+README.md
+yarn.lock
+.env

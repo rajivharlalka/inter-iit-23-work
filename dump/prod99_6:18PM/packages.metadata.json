@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"sku_id":{"$numberInt":"1"}},"name":"sku_id_1","background":true},{"v":{"$numberInt":"2"},"key":{"awb_id":{"$numberInt":"1"}},"name":"awb_id_1","background":true}],"uuid":"d708ab9356fa41cc965151a79625e946","collectionName":"packages","type":"collection"}

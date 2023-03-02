@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    container_name: thoth-dev
+    build: .
+    restart: always
+    ports:
+      - "4000:3000"
+    env_file:
+      - .env
